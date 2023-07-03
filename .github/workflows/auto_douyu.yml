@@ -1,0 +1,33 @@
+# This is a basic workflow that is manually triggered
+
+name: auto_douyu
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: 
+  schedule:
+    - cron: '02 16 * * *'
+    - cron: '02 19 * * *'
+
+jobs:
+  dy_auto_helper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: 'Install requirements'
+        run: pip install -r requirements.txt
+      - name: 'Working'
+        env:
+          COOKIES: ${{ secrets.COOKIES }}
+          BARKURL: ${{ secrets.BARKURL }}
+        run: |
+          python main.py
