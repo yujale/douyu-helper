@@ -18,8 +18,8 @@ def run():
             assert glow_nums != 0
             if mode == 1:
                 logger.info("当前选择模式为:自选模式")
-                nums = conf.get_conf_list('selfMode', 'giftCount')
-                room_list = conf.get_conf_list('selfMode', 'roomId')
+                nums = conf.get_conf_list('selfMode', 'gift_count')
+                room_list = conf.get_conf_list('selfMode', 'room_id')
                 logger.info("------开始捐赠荧光棒------")
                 for i in range(len(nums)):
                     glow_donate(nums[i], room_list[i])
