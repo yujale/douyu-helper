@@ -10,9 +10,7 @@ on:
       - main
   workflow_dispatch: 
   schedule:
-    - cron: '02 16 * * *'
-    - cron: '02 19 * * *'
-
+    - cron: '10 8 * * *'
 jobs:
   dy_auto_helper:
     runs-on: ubuntu-latest
