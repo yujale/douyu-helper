@@ -67,11 +67,12 @@ def glow_donate(num=1, room_id=12306):
     :param room_id: 房间号
     """
     donate_url = "/japi/prop/donate/mainsite/v1"
-    DATA = "propId=268&propCount=%s&roomId=%s&bizExt={\"yzxq\":{}}" % (num, room_id)
+    global Own
+    now_left = int(Own) - int(num)
+    DATA = "propId=268&propCount=%s&roomId=%s&bizExt={\"yzxq\":{}}" % (now_left, room_id)
     # 背包中含有道具才会进行赠送，否则会报错
     if Bags:
         donate_res = dy_req.request(method="post", path=donate_url, data=DATA)
-        global Own
         try:
             assert donate_res.status_code == 200
             assert donate_res.json()['msg'] == "success"
