@@ -68,7 +68,11 @@ def glow_donate(num=1, room_id=12306):
     """
     donate_url = "/japi/prop/donate/mainsite/v1"
     global Own
-    now_left =int(num) -int(Own)
+    now_left = 0
+    if num < Own:
+        now_left = num
+    else:
+        now_left = Own
     DATA = "propId=268&propCount=%s&roomId=%s&bizExt={\"yzxq\":{}}" % (now_left, room_id)
     # 背包中含有道具才会进行赠送，否则会报错
     if Bags:
